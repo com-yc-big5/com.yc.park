@@ -2,6 +2,7 @@ package com.yc.tc.tingche.bean;
 
 import java.sql.Timestamp;
 
+
 public class orders {
 	private Integer id;
 	private Integer user_id; 

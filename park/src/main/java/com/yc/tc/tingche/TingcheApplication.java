@@ -11,4 +11,5 @@ public class TingcheApplication {
 		SpringApplication.run(TingcheApplication.class, args);
 	}
 
+	
 }

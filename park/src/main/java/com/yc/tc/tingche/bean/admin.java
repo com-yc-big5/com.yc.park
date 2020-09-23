@@ -25,6 +25,7 @@ public class admin implements java.io.Serializable{
 		this.password = password;
 		this.caratDate = caratDate;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
