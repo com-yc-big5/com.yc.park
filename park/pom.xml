@@ -57,7 +57,6 @@
 			</exclusions>
 			<!-- 分页查询插件启动器 -->
      </dependency>
-	
 	</dependencies>
 
 	<build>
