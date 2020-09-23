@@ -3,7 +3,7 @@ package com.yc.tc.tingche.bean;
 import java.sql.Timestamp;
 
 public class admin implements java.io.Serializable{
-	
+	      
 	/**
 	 * 
 	 */
