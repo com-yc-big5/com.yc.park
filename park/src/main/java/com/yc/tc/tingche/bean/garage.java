@@ -6,6 +6,7 @@ public class garage {
 	private String name;
 	
 	
+	
 	public garage() {
 		super();
 		// TODO Auto-generated constructor stub
