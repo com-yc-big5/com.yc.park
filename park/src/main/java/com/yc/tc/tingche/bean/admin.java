@@ -11,6 +11,8 @@ public class admin implements java.io.Serializable{
 	private Integer id;
 	private String name;
 	private String password;
+	private String phone;
+	private String email;
 	private Timestamp caratDate;
 	
 	
@@ -18,14 +20,39 @@ public class admin implements java.io.Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public admin(Integer id, String name, String password, Timestamp caratDate) {
+
+	
+	public admin(Integer id, String name, String password, String phone, String email, Timestamp caratDate) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
+		this.phone = phone;
+		this.email = email;
 		this.caratDate = caratDate;
 	}
-	
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
