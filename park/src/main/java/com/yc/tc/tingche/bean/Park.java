@@ -1,6 +1,6 @@
 package com.yc.tc.tingche.bean;
 
-public class park {
+public class Park {
 
 	private Integer id;
 	private String garage ;
@@ -9,7 +9,7 @@ public class park {
 	private String size ;
 	private Integer isLong ;
 	
-	public park() {
+	public Park() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -62,7 +62,7 @@ public class park {
 		this.isLong = isLong;
 	}
 
-	public park(Integer id, String garage, double price, Integer status, String size, Integer isLong) {
+	public Park(Integer id, String garage, double price, Integer status, String size, Integer isLong) {
 		super();
 		this.id = id;
 		this.garage = garage;

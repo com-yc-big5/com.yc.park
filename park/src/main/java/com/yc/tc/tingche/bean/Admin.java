@@ -2,7 +2,7 @@ package com.yc.tc.tingche.bean;
 
 import java.sql.Timestamp;
 
-public class admin implements java.io.Serializable{
+public class Admin implements java.io.Serializable{
 	
 	/**
 	 * 
@@ -16,13 +16,13 @@ public class admin implements java.io.Serializable{
 	private Timestamp caratDate;
 	
 	
-	public admin() {
+	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	
-	public admin(Integer id, String name, String password, String phone, String email, Timestamp caratDate) {
+	public Admin(Integer id, String name, String password, String phone, String email, Timestamp caratDate) {
 		super();
 		this.id = id;
 		this.name = name;

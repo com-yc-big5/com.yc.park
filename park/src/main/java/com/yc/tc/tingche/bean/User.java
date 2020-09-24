@@ -3,7 +3,7 @@ package com.yc.tc.tingche.bean;
 import java.sql.Timestamp;
 
 
-public class user implements java.io.Serializable {
+public class User implements java.io.Serializable {
 	
 	
 	/**
@@ -24,11 +24,11 @@ public class user implements java.io.Serializable {
 	
 	
 	
-	public user() {
+	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public user(Integer id, String name, Integer password, String phone, String plate_num, Integer stauts,
+	public User(Integer id, String name, Integer password, String phone, String plate_num, Integer stauts,
 			Timestamp createDate, double money, String head, String email) {
 		super();
 		this.id = id;

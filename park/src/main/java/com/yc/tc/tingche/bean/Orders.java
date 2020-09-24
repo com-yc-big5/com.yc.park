@@ -3,7 +3,7 @@ package com.yc.tc.tingche.bean;
 import java.sql.Timestamp;
 
 
-public class orders {
+public class Orders {
 	private Integer id;
 	private Integer user_id; 
 	private Integer park_id;
@@ -60,7 +60,7 @@ public class orders {
 	public void setTotal(double total) {
 		this.total = total;
 	}
-	public orders(Integer id, Integer user_id, Integer park_id, Integer plate_id, Timestamp o_createDate,
+	public Orders(Integer id, Integer user_id, Integer park_id, Integer plate_id, Timestamp o_createDate,
 			Timestamp u_createDate, Timestamp u_disDate, double total) {
 		super();
 		this.id = id;
@@ -72,7 +72,7 @@ public class orders {
 		this.u_disDate = u_disDate;
 		this.total = total;
 	}
-	public orders() {
+	public Orders() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
