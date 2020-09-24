@@ -1,5 +1,6 @@
 package com.yc.tc.tingche.bean;
 
+
 public class Result<T> implements java.io.Serializable {
 	/**
 	 * 
@@ -62,6 +63,6 @@ public class Result<T> implements java.io.Serializable {
 	public void setData(T data) {
 		this.data = data;
 	}
+}
 	
 
-}
