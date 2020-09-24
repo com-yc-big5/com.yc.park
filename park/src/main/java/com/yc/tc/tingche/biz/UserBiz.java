@@ -1,5 +1,7 @@
 package com.yc.tc.tingche.biz;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.yc.tc.tingche.bean.User;
@@ -8,6 +10,8 @@ import com.yc.tc.tingche.dao.UserMapper;
 @Service
 public class UserBiz {
 	
+	
+	@Resource
 	private UserMapper umpper;
 	
 	
