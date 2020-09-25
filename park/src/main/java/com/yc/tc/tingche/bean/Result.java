@@ -1,50 +1,34 @@
 package com.yc.tc.tingche.bean;
 
-
-public class Result<T> implements java.io.Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+/**
+ * 	返回结果类
+ */
+public class Result {
+	
+	// 返回结果, 0失败, 1成功
 	private int code;
+	// 返回的消息 注册成功!
 	private String msg;
-	private   T data;
-	
-	
-	public Result() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Result(int code, String msg, T data) {
-		super();
-		this.code = code;
-		this.msg = msg;
-		this.data = data;
-	}
-	public Result(String msg,int code,  T data) {
-		super();
-		this.code = code;
-		this.msg = msg;
-		this.data = data;
-	}
+	// 返回给浏览器的数据,  list map 实体对象
+	private Object data;
+
 	public Result(int code, String msg) {
-		super();
 		this.code = code;
 		this.msg = msg;
+	}
 	
+	public Result(String msg) {
+		this.code =0;
+		this.msg = msg;		
 	}
-	public Result( String msg, T data) {
-		super();
-		
+	
+	
+	public Result(int code, String msg, Object data) {
+		this.code = code;
 		this.msg = msg;
 		this.data = data;
 	}
-	public Result(int code, T data) {
-		super();
-		this.code = code;
-		
-		this.data = data;
-	}
+	
 	public int getCode() {
 		return code;
 	}
@@ -57,12 +41,12 @@ public class Result<T> implements java.io.Serializable {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public T getData() {
+	public Object getData() {
 		return data;
 	}
-	public void setData(T data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
-}
-	
 
+	
+}
