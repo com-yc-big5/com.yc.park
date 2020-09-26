@@ -17,7 +17,6 @@ import com.yc.tc.tingche.biz.BizException;
 import com.yc.tc.tingche.biz.UserBiz;
 import com.yc.tc.tingche.util.Utils;
 
-
 @Controller
 public class UserAction {
 
@@ -73,5 +72,6 @@ public class UserAction {
 			 return new Result(0, e.getMessage());
 		}	
 	}
+
 
 }

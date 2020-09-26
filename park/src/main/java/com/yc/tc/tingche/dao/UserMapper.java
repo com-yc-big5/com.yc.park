@@ -9,7 +9,7 @@ public interface UserMapper {
 	@Insert("insert into user valus (null"
 			+ "#{name},#{password},#{phone}"
 			+ "#{plate_num},#{createDate},#{money}"
-			+ "#{head})")
+			+ "#{head}，#{email}))")
    public  int insert(User user);
 	
 	@Select("select count(*) from user where name=#{name}")
@@ -17,4 +17,6 @@ public interface UserMapper {
 
 	@Select("select * from user where name=#{name} and password=#{password}")
 	public User selectLogined(User user);
+	
+	
 }
