@@ -44,7 +44,6 @@ public class UserAction {
 		}
 		//响应重定向  redirect:index
 		return "index";
-		
 	}
 	
 	//点击注册
@@ -72,10 +71,7 @@ public class UserAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			 return new Result(0, e.getMessage());
-		}
-	 
-	
-		
-		}
+		}	
+	}
 
 }
