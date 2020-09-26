@@ -2,10 +2,12 @@ package com.yc.tc.tingche.biz;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.yc.tc.tingche.bean.Admin;
 
 import com.yc.tc.tingche.dao.AdmiMapper;
-
+@Service
 public class AdminBiz {
 	@Resource
 	private AdmiMapper ampper;
