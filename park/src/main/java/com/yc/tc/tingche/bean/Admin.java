@@ -2,6 +2,9 @@ package com.yc.tc.tingche.bean;
 
 import java.sql.Timestamp;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class Admin implements java.io.Serializable{
 	
 	/**
@@ -9,9 +12,12 @@ public class Admin implements java.io.Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
+	@NotEmpty(message="用户名不能为空")
 	private String name;
+	@NotEmpty(message="密码不能为空")
 	private String password;
 	private String phone;
+	@Email(message = "邮箱格式错误")
 	private String email;
 	private Timestamp caratDate;
 	

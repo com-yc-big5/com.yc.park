@@ -2,6 +2,9 @@ package com.yc.tc.tingche.bean;
 
 import java.sql.Timestamp;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 
 public class User implements java.io.Serializable {
 	
@@ -11,16 +14,19 @@ public class User implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
+	@NotEmpty(message="用户名不能为空")
 	private String name;
-	private Integer password;
+	@NotEmpty(message="密码不能为空")
+	private String password;
+	@NotEmpty(message="手机不能为空")
 	private String phone;
 	private String plate_num;
 	private Integer stauts;
 	private Timestamp createDate;
 	private double money;
 	private String  head;
+	@Email(message = "邮箱格式错误")
 	private String email;
-	
 	
 	
 	
@@ -28,7 +34,7 @@ public class User implements java.io.Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(Integer id, String name, Integer password, String phone, String plate_num, Integer stauts,
+	public User(Integer id, String name, String password, String phone, String plate_num, Integer stauts,
 			Timestamp createDate, double money, String head, String email) {
 		super();
 		this.id = id;
@@ -54,10 +60,10 @@ public class User implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(Integer password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public String getPhone() {

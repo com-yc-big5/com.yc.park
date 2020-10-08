@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" xmlns:th="www.thymeleaf.org">
 <head>
 
 	<!-- start: Meta -->
@@ -68,8 +68,8 @@
 							<li class="dropdown-menu-title">
 								<span>用户名</span>
 							</li>
-                            <li><a href="person.html"><i class="halflings-icon user"></i> 个人中心</a></li>
-							<li><a href="login.html"><i class="halflings-icon off"></i> 退出</a></li>
+                            <li><a href="adperson.html"><i class="halflings-icon user"></i> 个人中心</a></li>
+							<li><a href="touIndex。html"><i class="halflings-icon off"></i> 退出</a></li>
 						</ul>
 					</li>
 					<!-- end: User Dropdown -->
@@ -100,7 +100,7 @@
 					<li><a href="part.html"><i class="icon-road"></i><span class="hidden-tablet"> 车位管理</span></a></li>
 					<li><a href="user.html"><i class="icon-user"></i><span class="hidden-tablet"> 用户管理</span></a></li>
                     <li><a href="order.html"><i class="icon-edit"></i><span class="hidden-tablet"> 订单管理</span></a></li>
-					<li><a href="login.html"><i class="icon-lock"></i><span class="hidden-tablet"> 登录</span></a></li>
+					<li><a href="toadlogin"><i class="icon-lock"></i><span class="hidden-tablet"> 重新登录</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -126,56 +126,45 @@
 				<li><a href="#">车位管理</a></li>
 			</ul>
 
-			<div>
-				<div style="margin-left:30px;font-weight:bold;float: left">车库：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车库"/>	</div>
-				<div style="margin-left:30px;font-weight:bold;float: left">车位号：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车位号"/>	</div>
-				<div style="margin-left:30px;font-weight:bold;float: left">价格：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入价格"/>	</div>
-				<div style="margin-left:30px;font-weight:bold;float: left"><button type="button" class="btn btn-success">搜索</button></div>
-			</div>
-
-			<div>
+			<form  action="part.do" method="post">
+				<div id="garage"  style="margin-left:30px;font-weight:bold;float: left">
+				车库：<input name="garage" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车库"/>   </div>
+				<div id="id"   style="margin-left:30px;font-weight:bold;float: left">
+				车位号：<input  name="id" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车位号"/>	</div>
+				<div id="price"   style="margin-left:30px;font-weight:bold;float: left">
+				价格：<input name="price"  style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入价格"/>	</div>
+				<div style="margin-left:30px;font-weight:bold;float: left">
+				<button type="submit"  class="btn btn-success">搜索</button></div>
+			</form>
+		
+			<div >
 				<table class="table table-hover table-bordered" >
 					<caption>车位管理表格</caption>
 					<thead>
 					<tr>
 						<th>编号</th>
-						<th>车位名称</th>
+						<th>车位大小</th>
 						<th>所属车库</th>
 						<th>价格(元/小时)</th>
 						<th>操作</th>
 					</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<td>1</td>
-						<td>A-1</td>
-						<td>A</td>
-						<td>0.5元</td>
+					
+					
+					<tr  th:each="p : ${pnlist}"  >
+						<td  th:text="${p.id}">wu</td>
+						<td th:text="${p.size}" >1115元</td>
+						<td th:text="${p.garage}" >1115元</td>
+						<td th:text="${p.price}" >1115元</td>
 						<td>
 							<button  @click="showRuku(true)"  type="button" class="btn btn-info">修改</button>
 							<button type="button" class="btn btn-danger">删除</button>
 						</td>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>A-1</td>
-						<td>A</td>
-						<td>0.5元</td>
-						<td>
-							<button  @click="showRuku(true)"  type="button" class="btn btn-info">修改</button>
-							<button type="button" class="btn btn-danger">删除</button>
-						</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>A-1</td>
-						<td>A</td>
-						<td>0.5元</td>
-						<td>
-							<button  @click="showRuku(true)" type="button" class="btn btn-info">修改</button>
-							<button type="button" class="btn btn-danger">删除</button>
-						</td>
-					</tr>
+					
+				
+					
 					</tbody>
 				</table>
 			</div>
@@ -184,16 +173,20 @@
 		<!--弹框入库操作-->
 		<div class="openruku" v-if="openflag" style="background-color:white;width: 600px;height: 300px;position:fixed;top:20%;left:33%;border-radius:15px;text-align:center;z-index: 1000 ">
 			<span id="unshow" @click="showRuku(false)" style="font-weight: bold;">X</span>
-			<div class="rkdialog">
+			<form  action="xpart.do" method="post" class="rkdialog">
 				<div style="margin-top: 60px;margin-left: 20px;text-align: left">
-					<div style="margin-left:130px;font-weight:bold">车位：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="车位"/>	</div>
-					<div style="margin-left:130px;font-weight:bold">车库：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="车库"/></div>
-					<div style="margin-left:130px;font-weight:bold">价格：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="价格"/></div>
+				     <input name=>
+					<div style="margin-left:130px;font-weight:bold">
+					车位：<input name="id" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="车位"/>	</div>
+					<div style="margin-left:130px;font-weight:bold">
+					车库：<input name="garage"  style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="车库"/></div>
+					<div style="margin-left:130px;font-weight:bold">
+					价格：<input  name="price"  style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="价格"/></div>
 				</div>
 				<div style="margin-top: 30px;">
-					<button class="tingche" >保存</button>
+					<button type="submit" class="tingche" onclick="pa">保存</button>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 	</div>
@@ -202,11 +195,13 @@
 
 	</div>
 </div>
-	<script>
 
+
+
+	<script>
 		var vue=new Vue({
 			el:"#app",
-			data:{
+			data:{		
 				openflag:false
 			},
 			methods:{
@@ -224,6 +219,7 @@
 			}
 
 		});
+		
 	</script>
 
 <div class="clearfix"></div>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>用户管理</title>
+	<title>订单管理</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="">
 	<meta name="keyword" content="">
@@ -34,14 +34,14 @@
 	<![endif]-->
 
 	<!-- start: Favicon -->
-	<link rel="shortcut icon" href="admin/img/favicon.ico">
+	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-	<script type="text/javascript" src="admin/js/vue.js"></script>
-	<style>
-		table th{
-			width: 16%;
-		}
-	</style>
+
+    <style>
+       table th{
+            width: 14%;
+        }
+    </style>
 
 
 
@@ -49,7 +49,6 @@
 
 <body>
 <!-- start: Header -->
-<div id="app">
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container-fluid">
@@ -73,8 +72,8 @@
 							<li class="dropdown-menu-title">
 								<span>用户名</span>
 							</li>
-							<li><a href="adperson.html"><i class="halflings-icon user"></i> 个人中心</a></li>
-							<li><a href="touIndex。html"><i class="halflings-icon off"></i> 退出</a></li>
+							<li><a href="person.html"><i class="halflings-icon user"></i> 个人中心</a></li>
+							<li><a href="touIndex.html"><i class="halflings-icon off"></i> 退出</a></li>
 						</ul>
 					</li>
 					<!-- end: User Dropdown -->
@@ -102,10 +101,9 @@
 							<li><a class="submenu" href="outpart.html"><i class="icon-signout"></i><span class="hidden-tablet"> 车辆出库</span></a></li>
 						</ul>
 					</li>
-					<li><a href="part.html"><i class="icon-road"></i><span class="hidden-tablet"> 车位管理</span></a></li>
-					<li><a href="user.html"><i class="icon-user"></i><span class="hidden-tablet"> 用户管理</span></a></li>
-					<li><a href="order.html"><i class="icon-edit"></i><span class="hidden-tablet"> 订单管理</span></a></li>
-					<li><a href="login.html"><i class="icon-lock"></i><span class="hidden-tablet"> 登录</span></a></li>
+					
+					<li><a href="uorder.html"><i class="icon-edit"></i><span class="hidden-tablet"> 订单管理</span></a></li>
+					<li><a href="tologin"><i class="icon-lock"></i><span class="hidden-tablet"> 重新登录</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -128,106 +126,49 @@
 					<a href="index.html">主页</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">用户管理</a></li>
+				<li><a href="#">订单管理</a></li>
 			</ul>
 
-			<form action="user.do" method="post">
-				<div style="margin-left:30px;font-weight:bold;float: left">
-				用户名：<input name="name"  style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入订单编号"/>	</div>
-				<div style="margin-left:30px;font-weight:bold;float: left">
-				车牌号：<input name="plate_num" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车牌号"/>	</div>
-				<div style="margin-left:30px;font-weight:bold;float: left">
-				手机号码：<input name="phone" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入手机号码"/>	</div>
-				<div style="margin-left:30px;font-weight:bold;float: left">
-				邮箱：<input name="email" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入邮箱"/>	</div>
-				<div style="margin-left:30px;font-weight:bold;float: left">
-				<button type="submit" class="btn btn-success">搜索</button></div>
-			</form>
+            <form  action="uorder.do" method="post">
+              
+                <div hidden="hidden" style="margin-left:30px;font-weight:bold;float: left">
+                                                          车主：<input hidden="hidden" name="id" th:value="${session.logined.id}" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车主"/>	</div>
+                <div style="margin-left:30px;font-weight:bold;float: left">
+                 <button type="submit" class="btn btn-success">更新</button></div>
+            </form>
 
-			<div>
-				<table class="table table-hover table-bordered" >
-					<caption>用户管理表格</caption>
-					<thead>
-					<tr>
-						<th>编号</th>
-						<th>用户名</th>
-						<th>车牌号</th>
-						<th>手机号码</th>
-						<th>邮箱</th>
-						<th>操作</th>
-					</tr>
-					</thead>
-					<tbody>
-					
-					<tr th:each="u : ${ulist}">
-						<td th:text="${u.id}">1</td>
-						<td th:text="${u.name}">大乔</td>
-						<td th:text="${u.plate_num}">琼A8888</td>
-						<td th:text="${u.phone}">10086</td>
-						<td th:text="${u.email}">qiao@qq.com</td>
-						<td>
-							<button  @click="showRuku(true)" type="button" class="btn btn-info">修改</button>
-							<button type="button" class="btn btn-danger">删除</button>
-						</td>
-					</tr>
+            <div style="margin-top: 50px;">
+                <table class="table table-hover table-bordered" >
+                    <caption>订单管理表格</caption>
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>订单编号</th>
+                        <th>车牌号</th>
+                        <th>车主名称</th>
+                        <th>时长(时)</th>
+                        <th>总价(元)</th>
 
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<!--弹框入库操作-->
-		<div class="openruku" v-if="openflag" style="background-color:white;width: 600px;height: 350px;position:fixed;top:20%;left:33%;border-radius:15px;text-align:center;z-index: 1000 ">
-			<span id="unshow" @click="showRuku(false)" style="font-weight: bold;">X</span>
-			<form action="xuser.do"  class="rkdialog">
-			
-				<div style="margin-top: 60px;margin-left: 20px;text-align: left">
-					<div  style="margin-left:130px;font-weight:bold">
-					用户名：<input name="name" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="用户名"/>	</div>
-					<div style="margin-left:130px;font-weight:bold">
-					车牌号：<input name="plate_num" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="车牌号"/></div>
-					<div style="margin-left:116px;font-weight:bold">
-					手机号码：<input name="phone" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="手机号码"/></div>
-					<div style="margin-left:145px;font-weight:bold">
-					邮箱：<input name="email" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="邮箱"/></div>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="o : ${olist}">
+                        <td th:text="${o.id}">1</td>
+                        <td th:text="${o.orderCreateDate}">202009222156234</td>
+                        <td th:text="${o.plate_num}">琼A6666</td>
+                        <td th:text="${o.user_id}">小乔</td>
+                        <td th:text="${o.total}">2</td>
+                        <td th:text="${o.total}">20</td>
 
-				</div>
-				<div style="margin-top: 30px;">
-					<button class="tingche" >保存</button>
-				</div>
-				
-			</form>
-		</div>
-	</div>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+	    </div>
+
 </div>
-	<!-- 遮罩层 -->
-	<div id="cover" style="background: #000; position: absolute; left: 0px; top: 0px; width: 100%;  filter: alpha(opacity=30); opacity: 0.3; display: none; z-index: 1">
-
-	</div>
 </div>
-
-<script>
-
-	var vue=new Vue({
-		el:"#app",
-		data:{
-			openflag:false
-		},
-		methods:{
-			showRuku:function( value ){
-				// 弹窗
-				if(value==true){
-					$('#cover').css('display', 'block'); //显示遮罩层
-					$('#cover').css('height', document.body.clientHeight + 'px'); //设置遮罩层的高度为当前页面高度
-				}
-				if(value==false){
-					$('#cover').css('display', 'none'); //显示遮罩层
-				}
-				this.openflag=value;
-			},
-		}
-
-	});
-</script>
 <div class="clearfix"></div>
 
 <footer>

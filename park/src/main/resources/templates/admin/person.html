@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" xmlns:th="www.thymeleaf.org">
 <head>
 
     <!-- start: Meta -->
@@ -68,8 +68,8 @@
                             <li class="dropdown-menu-title">
                                 <span>用户名</span>
                             </li>
-                            <li><a href="person.html"><i class="halflings-icon user"></i> 个人中心</a></li>
-                            <li><a href="login.html"><i class="halflings-icon off"></i> 退出</a></li>
+                            <li><a href="adperson.html"><i class="halflings-icon user"></i> 个人中心</a></li>
+                            <li><a href="touIndex。html"><i class="halflings-icon off"></i> 退出</a></li>
                         </ul>
                     </li>
                     <!-- end: User Dropdown -->
@@ -100,7 +100,7 @@
                     <li><a href="part.html"><i class="icon-road"></i><span class="hidden-tablet"> 车位管理</span></a></li>
                     <li><a href="user.html"><i class="icon-user"></i><span class="hidden-tablet"> 用户管理</span></a></li>
                     <li><a href="order.html"><i class="icon-edit"></i><span class="hidden-tablet"> 订单管理</span></a></li>
-                    <li><a href="login.html"><i class="icon-lock"></i><span class="hidden-tablet"> 登录</span></a></li>
+                    <li><a href="toadlogin"><i class="icon-lock"></i><span class="hidden-tablet">重新 登录</span></a></li>
                 </ul>
             </div>
         </div>
@@ -130,48 +130,43 @@
             <div style="margin-left: 100px;margin-top: 50px;">
                 <div style="float: left"><img style="width: 150px;height: 150px;border-radius: 100px;" src="admin/img/gallery/photo1.jpg"></div>
                 <div style="float: left;margin-left: 50px;margin-top: 50px;font-size: 18px;">
+                
                     <div style="margin-top: 30px;" >
                         <button  @click="showEdit(true)" style="width: 100px;height: 30px;border-radius: 10px;background-color:#2a62bc;color: whitesmoke">编辑资料</button>
                     </div>
-                    <div style="margin-top: 30px;"><span>姓名：小乔</span></div>
-                    <div style="margin-top: 30px;"><span>电话：10086</span></div>
-                    <div style="margin-top: 30px;"><span>邮箱：1838750597@qq.com</span></div>
-                    <div style="margin-top: 30px;"><span>车牌号：琼A6666</span></div>
+                    
+                    <div style="margin-top: 30px;">姓名：<span th:text="${session.adlogined.name}" >姓名：小乔</span></div>
+                    <div style="margin-top: 30px;">电话：<span th:text="${session.adlogined.phone}" >电话：10086</span></div>
+                    <div style="margin-top: 30px;">邮箱：<span th:text="${session.adlogined.email}" >邮箱：1838750597@qq.com</span></div>
                     <div style="margin-top: 30px;color: green">
-                        <span>账户余额：99999</span>&nbsp;&nbsp;&nbsp;
-                        <button @click="showPay(true)" style="width: 50px;height: 30px;border-radius: 10px;background-color: orange;color: whitesmoke">充值</button>
+                        
                     </div>
+                    
                 </div>
             </div>
 
-            <!--弹框编辑资料操作-->
+
+             <!--弹框编辑资料操作-->
             <div class="openruku" v-if="editflag" style="font-size: 15px;font-weight:bold;background-color:white;width: 600px;height: 350px;position:fixed;top:20%;left:33%;border-radius:15px;text-align:center;z-index: 1000 ">
                编辑资料
                 <span id="unshow" @click="showEdit(false)" style="font-weight: bold;">X</span>
-                <div class="rkdialog">
+                <form action="adperson.do" method="post" class="rkdialog">
+                
                     <div style="margin-top: 60px;margin-left: 20px;text-align: left">
-                        <div style="margin-left: 142px;font-weight:bold">姓名：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="输入姓名"/></div>
-                        <div style="margin-left: 142px;font-weight:bold">电话：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="输入电话"/></div>
-                        <div style="margin-left:142px;font-weight:bold">邮箱：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="输入邮箱"/></div>
-                        <div style="margin-left:130px;font-weight:bold">车牌号：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车牌号"/>	</div>
+                    <input hidden="hidden" name="id"  th:value="${session.adlogined.id}">
+                        <div style="margin-left: 142px;font-weight:bold">            
+                           姓名：<input name="name" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="输入姓名"/></div>
+                        <div style="margin-left: 142px;font-weight:bold">
+                        电话：<input name="phone" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="输入电话"/></div>
+                        <div style="margin-left:142px;font-weight:bold">
+                        邮箱：<input name="email" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text" placeholder="输入邮箱"/></div>
                     </div>
+                    
                     <div style="margin-top: 30px;">
-                        <button class="tingche" >保存</button>
+                        <button type="submit" class="tingche" >保存</button>
                     </div>
-                </div>
-            </div>
-
-            <!--弹框显示支付方式-->
-            <div class="openruku" v-if="payflag" style="font-size: 15px;font-weight:bold;background-color:white;width: 600px;height: 350px;position:fixed;top:20%;left:33%;border-radius:15px;z-index: 1000 ">
-                <span id="unshow1" @click="showPay(false)" style="font-weight: bold;text-align: center">X</span>
-                <div class="rkdialog">
-                    <div style="float:right;width: 600px;margin-top: 30px;">
-                        <div style="font-weight: bold;font-size: 17px;padding-bottom: 20px;margin-left: 20px;">单击选择支付方式：</div>
-                        <div style="float: left;margin-left: 150px;"><button style="width: 150px;height: 150px;border-radius: 10px;"><img src="admin/img/money/lq.jpg"></button></div>
-                        <div style="float: left;margin-left: 30px;"><button style="width: 150px;height: 150px;border-radius: 10px;"><img src="admin/img/money/zfb.jpg"></button></div>
-                    </div>
-
-                </div>
+                    
+                </form>
             </div>
 
             <!-- 遮罩层 -->

@@ -72,8 +72,8 @@
 							<li class="dropdown-menu-title">
 								<span>用户名</span>
 							</li>
-							<li><a href="person.html"><i class="halflings-icon user"></i> 个人中心</a></li>
-							<li><a href="login.html"><i class="halflings-icon off"></i> 退出</a></li>
+							<li><a href="adperson.html"><i class="halflings-icon user"></i> 个人中心</a></li>
+							<li><a href="touIndex。html"><i class="halflings-icon off"></i> 退出</a></li>
 						</ul>
 					</li>
 					<!-- end: User Dropdown -->
@@ -104,7 +104,7 @@
 					<li><a href="part.html"><i class="icon-road"></i><span class="hidden-tablet"> 车位管理</span></a></li>
 					<li><a href="user.html"><i class="icon-user"></i><span class="hidden-tablet"> 用户管理</span></a></li>
 					<li><a href="order.html"><i class="icon-edit"></i><span class="hidden-tablet"> 订单管理</span></a></li>
-					<li><a href="login.html"><i class="icon-lock"></i><span class="hidden-tablet"> 登录</span></a></li>
+					<li><a href="toadlogin"><i class="icon-lock"></i><span class="hidden-tablet"> 重新登录</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -130,12 +130,16 @@
 				<li><a href="#">订单管理</a></li>
 			</ul>
 
-            <div>
-                <div style="margin-left:30px;font-weight:bold;float: left">订单编号：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入订单编号"/>	</div>
-                <div style="margin-left:30px;font-weight:bold;float: left">车牌号：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车牌号"/>	</div>
-                <div style="margin-left:30px;font-weight:bold;float: left">车主：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车主"/>	</div>
-                <div style="margin-left:30px;font-weight:bold;float: left"><button type="button" class="btn btn-success">搜索</button></div>
-            </div>
+            <form  action="order.do" method="post">
+                <div style="margin-left:30px;font-weight:bold;float: left">
+                                                        订单编号：<input name="id" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入订单编号"/>	</div>
+                <div style="margin-left:30px;font-weight:bold;float: left">
+                                                          车牌号：<input name="plate_num" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车牌号"/>	</div>
+                <div style="margin-left:30px;font-weight:bold;float: left">
+                                                          车主：<input name="user_id" style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车主"/>	</div>
+                <div style="margin-left:30px;font-weight:bold;float: left">
+                 <button type="submit" class="btn btn-success">搜索</button></div>
+            </form>
 
             <div style="margin-top: 50px;">
                 <table class="table table-hover table-bordered" >
@@ -152,34 +156,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>202009222156234</td>
-                        <td>琼A6666</td>
-                        <td>小乔</td>
-                        <td>2</td>
-                        <td>20</td>
+                    <tr th:each="o : ${olist}">
+                        <td th:text="${o.id}">1</td>
+                        <td th:text="${o.orderCreateDate}">202009222156234</td>
+                        <td th:text="${o.plate_num}">琼A6666</td>
+                        <td th:text="${o.user_id}">小乔</td>
+                        <td th:text="${o.total}">2</td>
+                        <td th:text="${o.total}">20</td>
 
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>202009222156234</td>
-                        <td>琼A6666</td>
-                        <td>小乔</td>
-                        <td>2</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>202009222156234</td>
-                        <td>琼A6666</td>
-                        <td>小乔</td>
-                        <td>2</td>
-                        <td>20</td>
-
-                    </tr>
-
+                    
                     </tbody>
                 </table>
             </div>

@@ -1,5 +1,7 @@
 package com.yc.tc.tingche.biz;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -31,6 +33,23 @@ public class UserBiz {
 		}
 		return dbUser;
 	}
+	//用户管理页面验证
+	
+	public List<User> selectByu(User u){
+		List<User> lu=umpper.selectByU(u);
+		if(lu==null) {
+			System.out.println("无用户");
+		}
+		
+		return lu;
+	}
+	
+	//用户管理页面修改
+	public void updateByu(User u) {
+		umpper.updateByU(u);
+		System.out.println("用户修改");
+	}
+	
 }
 
 

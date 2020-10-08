@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.tc.tingche.bean.Result;
@@ -22,13 +23,16 @@ public class UserAction {
 
 	@Resource
 	private UserBiz uBiz;
+	
+	
+	
 	//注册
 	@PostMapping("reg.do")
 	public String register(@Valid User user,Errors errors,Model m) {
 		if(errors.hasErrors()) {
 			m.addAttribute("errors", Utils.asMap(errors));
 			m.addAttribute("user",user);
-			return "reg";
+			return "ureg";
 		}
 		
 		try {
@@ -39,38 +43,33 @@ public class UserAction {
 			errors.rejectValue("name", "name",e.getMessage());
 			m.addAttribute("errors",Utils.asMap(errors));
 			m.addAttribute("user",user);
-			return "reg";
+			return "ureg";
 		}
 		//响应重定向  redirect:index
-		return "index";
+		return "uindex";
 	}
 	
 	//点击注册
 	@GetMapping("toreg")
 	public String toreg() {
-		return "reg";
+		return "ureg";
 	}
 	
-	
+	//点击登录
+	@RequestMapping("tologin")
+	public String tologin() {
+		return "ulogin.html";
+	}
 	//登录
 	@PostMapping("login.do")
-	@ResponseBody
-	public Result login(@Valid User user,Errors errors, HttpSession session) {
-		try {
-		if(errors.hasFieldErrors("name") || errors.hasFieldErrors("password")) {
-			Result res=new Result(0,"验证错误！",Utils.asMap(errors));
-			return res;
-		}
-		User dbuser;
+	public String login( User user, HttpSession session,Model m) throws BizException {
+         
+		User dbuser= uBiz.login(user);
+	    session.setAttribute("logined", dbuser);
+     	m.addAttribute("lduser",dbuser);
 		
-			dbuser = uBiz.login(user);
-			session.setAttribute("logined", dbuser);
-			return new Result(1,"登录成功",dbuser);
-		} catch (BizException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			 return new Result(0, e.getMessage());
-		}	
+         return "udindex";
+		
 	}
 
 

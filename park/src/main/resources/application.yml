@@ -16,7 +16,7 @@ spring:
 logging:
    level:
       com:
-         zhi:
-           zblog:
-               dao: debug
-               web: warn 
+       yc:
+        tc:
+         tingche:
+          dao: trace 

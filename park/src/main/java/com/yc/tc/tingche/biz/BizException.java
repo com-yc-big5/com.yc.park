@@ -1,7 +1,8 @@
 package com.yc.tc.tingche.biz;
 
 import org.omg.IOP.ExceptionDetailMessage;
-
+import org.springframework.stereotype.Service;
+@Service
 public class BizException extends Exception {
 
 	/**

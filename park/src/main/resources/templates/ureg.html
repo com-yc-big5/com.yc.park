@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" xmlns:th="www.thymeleaf.org">
 <head>
 <meta content="IE=11.0000" http-equiv="X-UA-Compatible">
 
@@ -97,6 +97,12 @@ a {
 .field-validation-error {
 	color: red;
 }
+
+</style>
+<style type="text/css">
+.e{
+   color:red
+}
 </style>
 
 <meta name="GENERATOR" content="MSHTML 11.00.9600.17496">
@@ -112,35 +118,39 @@ a {
 				style="padding: 20px 0px 0px; text-align: center; position: relative;font-size:30px;">
 				欢迎加入雷停!</p>
 			<p style="padding: 30px 0px 20px; position: relative;">
-				 <input id="name" name="name"
-					class="ipt" type="text" placeholder="请输入用户名" value="">
-			</p>
+			用户名：
+				 <input class="ipt" 
+				  name="name"  type="text"   th:value="${user}!=null ? ${user.name} : ''">	
+				 </p>
+					<span class="e" th:if="${errors}!=null" th:text="${errors.get('name')}"></span>
+					
 			<p style="padding: 10px 0px 20px;position: relative;">
+			密码：
 				 <input class="ipt"
-					id="password" type="password" placeholder="请输入密码" value="">
+					name="password"  type="text"  th:value="${user}!=null ? ${user.password} : ''">
 			</p>
+			<span class="e" th:if="${errors}!=null" th:text="${errors.get('password')}"></span>
+		
 			<p style="padding: 10px 0px 20px;position: relative;">
-				 <input class="ipt"
-					id="rep" type="password" placeholder="确认密码" value="">
+			邮箱:
+				 <input class="ipt"  
+				 name="email" type="email" placeholder="请输入邮箱" th:value="${user}!=null ? ${user.email} : ''">
 			</p>
+			<span class="e" th:if="${errors}!=null" th:text="${errors.get('email')}"></span>
 			<p style="padding: 10px 0px 20px;position: relative;">
-				 <input id="email" name="email"
-					class="ipt" type="email" placeholder="请输入邮箱" value="">
+			电话号码:
+				 <input class="ipt"  
+				 name="phone" type="text" placeholder="请输入电话号码" th:value="${user}!=null ? ${user.phone} : ''">
 			</p>
-			<p style="padding: 10px 0px 20px;position: relative;">
-				 <input id="phone" name="phone"
-					class="ipt" type="text" placeholder="请输入电话号码" value="">
-			</p>
+			<span class="e" th:if="${errors}!=null" th:text="${errors.get('phone')}"></span>
 			<p style="position: relative;">
 				<span class="p_logo"></span>
-
 			</p>
-			
 			<div
 				style="line-height: 50px; margin-top: 20px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
 				<p style="margin: 0px 35px 20px 45px;">
 				
-				<input type="button" value="注册"
+				<input type="submit" value="注册"
 				       style="background: rgb(0, 142, 173); padding: 7px 15px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;">
 				</p>
 			</div>

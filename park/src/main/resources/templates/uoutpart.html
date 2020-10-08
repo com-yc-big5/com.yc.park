@@ -68,7 +68,7 @@
 								<span>用户名</span>
 							</li>
 							<li><a href="person.html"><i class="halflings-icon user"></i> 个人中心</a></li>
-							<li><a href="login.html"><i class="halflings-icon off"></i> 退出</a></li>
+							<li><a href="touIndex.html"><i class="halflings-icon off"></i> 退出</a></li>
 						</ul>
 					</li>
 					<!-- end: User Dropdown -->
@@ -92,12 +92,12 @@
 					<li>
 						<a class="dropmenu" href="#"><i class="icon-truck"></i><span class="hidden-tablet"> 车辆出入库</span> <span class="label label-important"> 2 </span></a>
 						<ul>
-							<li><a class="submenu" href="inpart.html"><i class="icon-signin"></i><span class="hidden-tablet"> 车辆入库</span></a></li>
-							<li><a class="submenu" href="outpart.html"><i class="icon-signout"></i><span class="hidden-tablet"> 车辆出库</span></a></li>
+							<li><a class="submenu" href="uinpart.html"><i class="icon-signin"></i><span class="hidden-tablet"> 车辆入库</span></a></li>
+							<li><a class="submenu" href="uoutpart.html"><i class="icon-signout"></i><span class="hidden-tablet"> 车辆出库</span></a></li>
 						</ul>
 					</li>
-					<li><a href="person.html"><i class="icon-user"></i><span class="hidden-tablet"> 个人中心</span></a></li>
-					<li><a href="login.html"><i class="icon-lock"></i><span class="hidden-tablet"> 登录</span></a></li>
+					<li><a href="uorder.html"><i class="icon-edit"></i><span class="hidden-tablet"> 订单管理</span></a></li>
+					<li><a href="tologin"><i class="icon-lock"></i><span class="hidden-tablet"> 重新登录</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -124,23 +124,26 @@
 			</ul>
 
 			<div>
+			<!--  
 				<div style="margin-left:130px;font-weight:bold;">
 					<div style="float: left">车牌号：<input style="width: 200px;height: 30px;border-radius: 10px;border: solid 2px;" type="text"placeholder="输入车牌号"/>	</div>
 					<div style="float: left;margin-left: 20px;"><button style="width: 60px;height: 40px;border-radius: 10px;color: white;background-color:orangered;">结算</button></div>
-				</div>
+				</div>-->
 				<br>
 				<div  style="width: 100%;height:600px;background-color: #F1FFED;border-radius: 18px;margin-top: 30px">
 					<div style="width:300px;text-align: left;color: green;padding-top:15px;padding-bottom: 50px;">
-						<div style="margin-left: 30px;margin-top: 30px;"><label>车牌号：琼A8888</label></div>
-						<div style="margin-left: 30px;margin-top: 30px;"><label>车主姓名：大乔</label></div>
-						<div style="margin-left: 30px;margin-top: 30px;"><label>入库时间：2020.09.24 14:09:23</label></div>
-						<div style="margin-left: 30px;margin-top: 30px;"><label>出库时间：2020.09.24 17:09:23</label></div>
-						<div style="margin-left: 30px;margin-top: 30px;"><label>停车时长：3小时</label></div>
-						<div style="margin-left: 30px;margin-top: 30px;"><label>车位名称：A-1</label></div>
-						<div style="margin-left: 30px;margin-top: 30px;"><label>车位价格：0.4元/小时</label></div>
-						<div style="margin-left: 30px;margin-top: 30px;"><label>车位位置：11栋A单元1层</label></div>
-						<div style="margin-left: 30px;margin-top: 30px;"><label>操作人：小乔</label></div>
-						<div style="margin-left: 30px;margin-top: 30px; color: red"><label>总计：1.2元</label></div>
+						<div style="margin-left: 30px;margin-top: 30px;">车牌号：<label th:text="${uselct.plate_num}">琼A8888</label></div>
+						<div style="margin-left: 30px;margin-top: 30px;">车主姓名：<label th:text="${uselct.name}">大乔</label></div>
+						<div style="margin-left: 30px;margin-top: 30px;">入库时间：<label th:text="${oselct.unloadCreateDate}">2020.09.24 14:09:23</label></div>
+						<div style="margin-left: 30px;margin-top: 30px;">出库时间：<label th:text="${oselct.unloadDisDate}">2020.09.24 17:09:23</label></div>
+						<div style="margin-left: 30px;margin-top: 30px;">停车时长：<label th:text="${oselct.total}">3小时</label>小时</div>
+						<div style="margin-left: 30px;margin-top: 30px;">车位名称：
+						<label th:text="${pselct.garage}">11栋A单元1层</label>-<label th:text="${pselct.num_id}">A-1</label>位</div>
+						<div style="margin-left: 30px;margin-top: 30px;">车位价格：<label th:text="${pselct.price}">0.4元/小时</label>元/小时</div>
+						<div style="margin-left: 30px;margin-top: 30px;">车位位置：<label th:text="${pselct.garage}">11栋A单元1层</label>号车库</div>
+						<div style="margin-left: 30px;margin-top: 30px;">操作人：<label th:text="${uselct.name}">小乔</label></div>
+						<div style="margin-left: 30px;margin-top: 30px; color: red">
+						<label th:text="${pselct.price} * ${oselct.total}">总计：1.2元</label>元</div>
 					</div>
 					<div style="float:right;width: 600px;margin-top: -30%">
 						<div style="font-weight: bold;font-size: 17px;padding-bottom: 20px;">支付方式：</div>
